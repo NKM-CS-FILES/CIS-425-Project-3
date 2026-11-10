@@ -1,0 +1,42 @@
+@startuml
+' SUPER!!! Thrilled about plantuml, been using it for years now. no idea
+' anyone else at umd knew about it, first time I've seen it mentioned.
+' baffles me why anyone would use "enterprise architect" instead
+
+title TaskPad PHP - Classes
+
+class Task {
+  - id : string
+  - title : string
+  - description : string
+  - priority : string
+  - due : ?string
+  - completed : bool
+}
+
+class TaskRepository {
+  - path : string = "data/tasks.json"
+  + all() : Task[]
+  + add(task : Task) : void
+  + complete(id : string) : void
+  + delete(id : string) : void
+}
+
+class Validator {
+  - priorities : string[] = Low, Medium, High
+  + validateCreate(input : array) : array
+}
+
+class Controller {
+  + handlePost() : void
+  + handleGet(q : string, priority : string) : void
+}
+
+note right of Controller
+  index.php
+end note
+
+Controller --> TaskRepository : uses
+Controller --> Validator : uses
+TaskRepository "1" o-- "*" Task
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+title TaskPad PHP - Use Cases
+left to right direction
+
+actor User
+
+rectangle "TaskPad PHP" {
+  usecase "Create task" as Create
+  usecase "List tasks" as List
+  usecase "Filter tasks" as Filter
+  usecase "Complete task" as Complete
+  usecase "Delete task" as Delete
+}
+
+User --> Create
+User --> List
+User --> Filter
+User --> Complete
+User --> Delete
+
+Filter .> List : <<extend>>
+@enduml
